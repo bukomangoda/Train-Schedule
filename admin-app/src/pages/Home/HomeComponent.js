@@ -44,6 +44,28 @@ function HomeComponent() {
             });
     }
 
+
+
+
+    // To update
+    const updateSchedule = async () => {
+        const docRef = await updateDoc(collection(db, "schedule" , no), {
+            Number : no,
+            Departs: departs,
+            From: from,
+            To: to,
+            Duration: duration,
+            
+        }).then(() => {
+            alert("Record Successfully Updated !");
+        
+            clearTexts();
+        }).catch(() => {
+            alert("Record Updating Failed !")
+        });
+    }
+    
+    //to get data
     const getSchedule = async () => {
         const querySnapshot = await getDocs(collection(db, "schedule"));
         setSchedule(querySnapshot.docs.map((doc) => ({
@@ -96,7 +118,7 @@ function HomeComponent() {
                         
                         <button type="button" class="btn btn-primary" onClick={addSchedule}>Save</button>
                         
-                        <button type="button" class="btn btn-danger" style={{ marginLeft: 10 }} onClick={deleteSchedule}>Update</button>
+                        <button type="button" class="btn btn-danger" style={{ marginLeft: 10 }} onClick={updateSchedule}>Update</button>
                     </div>
                     <div className="col">
                         <table class="table">
@@ -131,8 +153,8 @@ function HomeComponent() {
                 <div className="row">
                             <div className="col-6"> 
 
-                            <label for="exampleFormControlInput1" class="form-label">Delete Record</label>
-                            <input type="email" value={no} onChange={(e) => { setNo(e.target.value) }} class="form-control" id="deletinput" placeholder="2h" />
+                            <label for="exampleFormControlInput1" class="form-label">Enter the No to Delete Record</label>
+                            <input type="email" value={no} onChange={(e) => { setNo(e.target.value) }} class="form-control" id="deletinput" placeholder="Nxxx" />
                             <br></br>
                             <button type="button" class="btn btn-danger" style={{ marginLeft: 10 }} onClick={deleteSchedule}>Delete</button>
                             
