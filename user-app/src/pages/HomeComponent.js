@@ -23,6 +23,7 @@ function HomeComponent() {
             <div className="container">
                 <div className="row" >
                     <h3>Train Schedule</h3>
+                    <h3>Train Schedule</h3>
                     <br></br>
                     <br></br>
 
